@@ -1,14 +1,19 @@
-import React, { useContext } from 'react';
-import { TodoContext } from '../contexts/TodoContext';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const TodoDetail = ({todo}) => {
-  const { toggleComplete } = useContext(TodoContext);
-  return (
-    <li className={todo.completed ? 'complete' : 'incomplete'} onClick={() => toggleComplete(todo.id)}>
-      <input type="checkbox" value={1} checked={todo.completed} />
-      {todo.name}
-    </li>
-  );
-}
- 
-export default TodoDetail;
+const TodoDetails = ({ onClick, todo: { completed, title } }) => (
+  <li onClick={onClick} onKeyDown={onClick} role="menuitem" className={completed ? 'complete' : 'incomplete'}>
+    <input type="checkbox" value={1} readOnly checked={completed} />
+    {title}
+  </li>
+);
+
+TodoDetails.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  todo: PropTypes.shape({
+    completed: PropTypes.bool.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+export default TodoDetails;

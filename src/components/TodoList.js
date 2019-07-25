@@ -3,11 +3,11 @@ import { TodoContext } from '../contexts/TodoContext';
 import TodoDetail from './TodoDetail';
 
 const TodoList = () => {
-  const { todos } = useContext(TodoContext);
+  const { todos, toggleTodo } = useContext(TodoContext);
   return (
     <div className="todo-list">
       <ul>
-        { todos.map(todo => <TodoDetail todo={todo} />) }
+        { todos.map(todo => <TodoDetail key={todo.id} todo={todo} onClick={() => toggleTodo(todo.id)} />) }
       </ul>
     </div>
   );

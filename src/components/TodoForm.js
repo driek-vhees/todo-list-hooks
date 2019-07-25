@@ -9,7 +9,7 @@ const TodoForm = () => {
     if (title === '') {
       return;
     }
-    addTodo({name: title});
+    addTodo({title});
     setTitle('');
   }
   return (
